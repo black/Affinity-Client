@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/black10"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/messagebox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:textAllCaps="true"
+            android:id="@+id/signinmessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/blueGreyLight"
+            android:text="USERNAME"/>
+        <TextView
+            android:textAllCaps="true"
+            android:id="@+id/signinsubmessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blueGreyLight"
+            android:text="MESSAGE"/>
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/signinprogress"
+            android:indeterminate="true"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/signin"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_signin"/>
+</RelativeLayout>

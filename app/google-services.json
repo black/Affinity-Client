@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "159483678167",
+    "firebase_url": "https://brain-storming-d513a.firebaseio.com",
+    "project_id": "brain-storming-d513a",
+    "storage_bucket": "brain-storming-d513a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159483678167:android:ba77b309aecebe3fd14f92",
+        "android_client_info": {
+          "package_name": "com.black.affinity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159483678167-u20p5rciaj69lsb6b3l8m9kf8iuiupe4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.black.affinity",
+            "certificate_hash": "a5f1b26cc9aeb2a8a6a27b631cda860075453ebb"
+          }
+        },
+        {
+          "client_id": "159483678167-lin1nrs8qna25416gvuqgd1nso6pcf0b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANORDIbt0qAr6u249s6fKemIA03bUHW4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159483678167-lin1nrs8qna25416gvuqgd1nso6pcf0b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
