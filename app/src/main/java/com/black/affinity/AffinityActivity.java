@@ -51,13 +51,15 @@ public class AffinityActivity extends AppCompatActivity {
 
     private void init(int pos){
         String currentTeam = teamList.get(pos).getTeam();
+        String cuurTeamName = teamList.get(pos).getInfo().get("name");
         String myKey = teamList.get(pos).getUniqueId();
         String status = teamList.get(pos).getStatus();
         if (status.equals("pending")){
             joinTeam(myKey, currentTeam,"accepted");
         }else{
             Intent intent = new Intent(getBaseContext(), IdeaActivity.class);
-            intent.putExtra("TEAM", currentTeam);
+            intent.putExtra("TEAM_ID", currentTeam);
+            intent.putExtra("TEAM_NAME", cuurTeamName);
             intent.putExtra("STATUS", status);
             intent.putExtra("AVATAR", myAvatar);
             startActivity(intent);
@@ -79,6 +81,7 @@ public class AffinityActivity extends AppCompatActivity {
                     Invite invite = snapshot.getValue(Invite.class);
                     invite.setUniqueId(snapshot.getKey());
                     teamList.add(invite);
+                    Log.d("LogInvite",invite.getInfo().get("name"));
                     teamRvAdapter.notifyDataSetChanged();
                 }
             }

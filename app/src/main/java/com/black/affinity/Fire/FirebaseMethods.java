@@ -42,25 +42,8 @@ public class FirebaseMethods {
         this.inviteRef = firebaseDatabase.getReference("invite");
         this.notesRef = firebaseDatabase.getReference("notes");
         this.participantsRef = firebaseDatabase.getReference("participants");
-//        this.devicesRef = firebaseDatabase.getReference("devices");
-//        this.roomsRef = firebaseDatabase.getReference("chatrooms");
-//        this.msgRef = firebaseDatabase.getReference("messages");
     }
 
-    /* Get chat-room under caretaker node which indicated what are the chat-room a caretaker has joined*/
-//    public void getTeam(final ReadStatus status) {
-//        careRef.child("chatrooms").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                status.DataRead(snapshot);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
     /* Get messages from a given chat id under Messages node */
     public void addNotes(String team, Ideas ideas, final WriteStatus status) {
         notesRef.child(team).push().setValue(ideas)
@@ -127,95 +110,5 @@ public class FirebaseMethods {
             }
         });
     }
-
-    /* Get userslist from a given chatid under Chatroom Node */
-//    public void getUsers(String chatId, final ReadStatus status) {
-//        roomsRef.child(chatId).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists()) {
-//                    status.DataRead(snapshot);
-//                } else {
-//                    Log.d("UsersFound", "Not Found");
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
-
-//    public void sendMessages(String chatRoomId, Chat chat, final WriteStatus status) {
-//        msgRef.child(chatRoomId).child(dateStamp()).push().setValue(chat)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        status.DataWrite("Done");
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                status.DataWrite("Failed");
-//            }
-//        });
-//    }
-
-
-    /* Get device status of a give user id under User Node */
-  /*  public void createDeviceStatus(String uid) {
-//        devicesRef.child(uid).child(dateStamp()).push().setValue(chat)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        status.DataWrite("Done");
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                status.DataWrite("Failed");
-//            }
-//        });
-    }*/
-
-//    public void getDeviceStatus(final String uid, final ReadStatus readStatus) {
-//        devicesRef.child(uid).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists()) {
-//                    readStatus.DataRead(snapshot);
-//                } else {
-//                    Log.d("DevStatus", "Not Found");
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
-
-//    public void sendRequest(String data) {
-//        FirebaseFunctions.getInstance()
-//                .getHttpsCallable("addFriend")
-//                .call(data)
-//                .addOnSuccessListener(new OnSuccessListener<HttpsCallableResult>() {
-//                    @Override
-//                    public void onSuccess(HttpsCallableResult httpsCallableResult) {
-//                        Log.d("cloudFun", httpsCallableResult.toString());
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Log.d("cloudFun", e.toString());
-//            }
-//        });
-//    }
-
-//    public String dateStamp() {
-//        return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-//    }
 
 }

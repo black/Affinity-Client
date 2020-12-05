@@ -1,10 +1,13 @@
 package com.black.affinity.Pojos;
 
+import java.util.HashMap;
+
 public class Invite {
     private String mail;
     private String team;
     private String status;
     private String uniqueId;
+    private HashMap<String,String> info;
 
     public String getMail() {
         return mail;
@@ -36,6 +39,14 @@ public class Invite {
 
     public void setUniqueId(String uniqueId) {
         this.uniqueId = uniqueId;
+    }
+
+    public HashMap<String, String> getInfo() {
+        return info;
+    }
+
+    public void setInfo(HashMap<String, String> info) {
+        this.info = info;
     }
 }
 

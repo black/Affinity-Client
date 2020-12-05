@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +30,7 @@ public class IdeaActivity extends AppCompatActivity {
     private String user;
     private String myAvatar;
     private String team;
+    private String teamName;
     private String status;
     private EditText msgText;
     private MaterialButton submit;
@@ -40,16 +43,20 @@ public class IdeaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_idea);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
         user = FirebaseAuth.getInstance().getCurrentUser().getUid();
         firebaseMethods = new FirebaseMethods(user);
-        team = getIntent().getStringExtra("TEAM");
+        team = getIntent().getStringExtra("TEAM_ID");
+        teamName = getIntent().getStringExtra("TEAM_NAME");
         status = getIntent().getStringExtra("STATUS");
         myAvatar= getIntent().getStringExtra("AVATAR");
-        setTitle(team.toUpperCase());
+        setTitle(teamName.toUpperCase());
         recyclerView = findViewById(R.id.ideasList);
         ideaRVAdapter = new IdeaRVAdapter(ideasList,myAvatar);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         GridLayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        mLayoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(ideaRVAdapter);
         recyclerView.addItemDecoration(new SpacesItemDecoration(2,getResources().getDimensionPixelSize(R.dimen.spacing),true));
@@ -65,8 +72,9 @@ public class IdeaActivity extends AppCompatActivity {
                 idea.setUser(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
                 idea.setTime(String.valueOf(new Date().getTime()));
                 addNote(team, idea);
+                recyclerView.scrollToPosition(ideaRVAdapter.getItemCount() - 1);
+                msgText.setText("");
             }
-            msgText.setText("");
         });
     }
 
@@ -74,29 +82,23 @@ public class IdeaActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getAllNotes();
+        recyclerView.scrollToPosition(ideaRVAdapter.getItemCount() - 1);
     }
 
     private void getAllNotes(){
-        firebaseMethods.getNotes(team, new FirebaseMethods.ReadStatus() {
-            @Override
-            public void DataRead(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    Ideas idea = snapshot.getValue(Ideas.class);
-                    ideasList.add(idea);
-                    ideaRVAdapter.notifyDataSetChanged();
-                }
+        firebaseMethods.getNotes(team, dataSnapshot -> {
+            ideasList.clear();
+            for (DataSnapshot snapshot: dataSnapshot.getChildren()){
+                Ideas idea = snapshot.getValue(Ideas.class);
+                ideasList.add(idea);
             }
+            ideaRVAdapter.notifyDataSetChanged();
         });
     }
 
 
     private void addNote(String team, Ideas ideas){
-        firebaseMethods.addNotes(team, ideas, new FirebaseMethods.WriteStatus() {
-            @Override
-            public void DataWrite(String msg) {
-                Log.d("FireStatus",msg+" write");
-            }
-        });
+        firebaseMethods.addNotes(team, ideas, msg -> Log.d("FireStatus",msg+" write"));
     }
 
 

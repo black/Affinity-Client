@@ -15,6 +15,7 @@ import com.black.affinity.Pojos.Ideas;
 import com.black.affinity.R;
 import com.black.affinity.OnItemClickListener;
 
+import java.util.Collections;
 import java.util.List;
 
 public class IdeaRVAdapter extends RecyclerView.Adapter<IdeaRVAdapter.ContentViewHolder> {

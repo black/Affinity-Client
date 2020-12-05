@@ -34,7 +34,7 @@ public class TeamRVAdapter extends RecyclerView.Adapter<TeamRVAdapter.ContentVie
 
     @Override
     public void onBindViewHolder(@NonNull ContentViewHolder holder, int position) {
-        holder.titleView.setText(teamList.get(position).getTeam());
+        holder.titleView.setText(teamList.get(position).getInfo().get("name"));
 
         int pL = holder.view.getPaddingLeft();
         int pT = holder.view.getPaddingTop();
