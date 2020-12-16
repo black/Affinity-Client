@@ -47,12 +47,7 @@ public class FirebaseMethods {
     /* Get messages from a given chat id under Messages node */
     public void addNotes(String team, Ideas ideas, final WriteStatus status) {
         notesRef.child(team).push().setValue(ideas)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        status.DataWrite("Done");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
+                .addOnSuccessListener(aVoid -> status.DataWrite("Done")).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 status.DataWrite("Failed");
